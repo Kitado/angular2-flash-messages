@@ -10,11 +10,12 @@ import { FlashMessageInterface } from './flash-message.interface';
           <div id="grayOutDiv" *ngIf='_grayOut && messages.length'></div>
           <div class="alert flash-message {{message.cssClass}}" *ngFor='let message of messages'>
               <p>{{message.text}}</p>
-          </div> 
+          </div>
       </div>
   `
 })
 export class FlashMessagesComponent implements OnInit {
+    public classes: any;
     private _defaults = {
         text: 'default message',
         cssClass: ''
@@ -30,16 +31,16 @@ export class FlashMessagesComponent implements OnInit {
     }
 
     ngOnInit() {}
-    
+
     show(text?: string, options = {}): void {
-        
+
         let defaults = {
           timeout: 2500,
           cssClass: ''
         };
-        
+
         for (var attrname in options) { (<any>defaults)[attrname] = (<any>options)[attrname]; }
-        
+
         let message = new FlashMessage(text, defaults.cssClass);
         this.messages.push(message);
         this._cdRef.detectChanges();
@@ -49,7 +50,7 @@ export class FlashMessagesComponent implements OnInit {
             this._cdRef.detectChanges();
         }, defaults.timeout);
     }
-    
+
     grayOut(value = false) {
         this._grayOut = value;
     }
