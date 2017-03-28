@@ -15,13 +15,13 @@ import { FlashMessageInterface } from './flash-message.interface';
   `
 })
 export class FlashMessagesComponent implements OnInit {
-    public classes: any;
     private _defaults = {
         text: 'default message',
         cssClass: ''
     };
 
     text: string;
+    classes: any;
     messages: FlashMessageInterface[] = [];
     _grayOut: boolean = false;
 
